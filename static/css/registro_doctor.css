@@ -1,0 +1,15 @@
+.fondo-delineado {
+    background: linear-gradient(to bottom, #0d6efd, white);
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    z-index: -1;
+}
+
+.full-page {
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+}

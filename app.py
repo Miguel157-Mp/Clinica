@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request
 from flask_cors import CORS
 from controller.database import initialize_database
 from controller.models import Doctor, Cita  # Added Cita import
@@ -9,13 +9,6 @@ app = Flask(__name__)
 CORS(app)
 
 initialize_database()
-print('Database initialized')
-
-# Ruta principal (página de inicio)
-@app.route('/')
-def index():
-    # Mostrar un menú de opciones para el usuario
-    return render_template('user/login.html')
 
 def generar_nro_carnet():
     with sqlite3.connect('database.db') as conn:
@@ -50,8 +43,8 @@ def doctor():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
+    
+    
 @app.route('/crear_cita', methods=['POST'])
 def crear_cita_route():
     try:

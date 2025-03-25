@@ -27,32 +27,32 @@ class Doctor:
             
 class Cita:
     def __init__(self, doctor_id, patient_id, fecha, motivo):
-        self.doctor_id = doctor_id
+                self.doctor_id = doctor_id
         self.patient_id = patient_id
         self.fecha = fecha
         self.motivo = motivo
 
     def save(self):
-        with sqlite3.connect('database.db') as conn:
+                with sqlite3.connect('database.db') as conn:
             cursor = conn.cursor()
-            cursor.execute('''
-                INSERT INTO citas (doctor_id, patient_id, fecha, motivo)
-                VALUES (?, ?, ?, ?)
+                        cursor.execute('''
+            INSERT INTO citas (doctor_id, patient_id, fecha, motivo)
+            VALUES (?, ?, ?, ?)
             ''', (self.doctor_id, self.patient_id, self.fecha, self.motivo))
             conn.commit()
 
     @staticmethod
     def find_by_id(appointment_id):
-        with sqlite3.connect('database.db') as conn:
+                with sqlite3.connect('database.db') as conn:
             cursor = conn.cursor()
-            cursor.execute('SELECT * FROM appointments WHERE id = ?', (appointment_id,))
+                        cursor.execute('SELECT * FROM appointments WHERE id = ?', (appointment_id,))
             return cursor.fetchone()
 
     @staticmethod
     def list():
-        with sqlite3.connect('database.db') as conn:
+                with sqlite3.connect('database.db') as conn:
             cursor = conn.cursor()
             cursor.execute('SELECT * FROM citas')
             rows = cursor.fetchall()
             return [{"id": row[0], "doctor_id": row[1], "patient_id": row[2], "fecha": row[3], "motivo": row[4]} for row in rows]
-
+            
